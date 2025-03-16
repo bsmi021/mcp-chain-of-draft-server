@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const TOOL_NAME = "chain-of-draft";
+export const TOOL_NAME = "chainOfDraft";
 
 // Detailed parameter descriptions
 export const TOOL_PARAM_DESCRIPTIONS = {
@@ -8,7 +8,7 @@ export const TOOL_PARAM_DESCRIPTIONS = {
 
     next_step_needed: "Boolean flag indicating whether another critique or revision cycle is needed in the reasoning chain. Set to false only when the final, satisfactory conclusion has been reached.",
 
-    draft_number: "Current draft number in the iteration sequence (must be >= 1). Increments with each new critique or revision.",
+    draft_number: "Current draft number in the iteration sequence (must be >= 1). Increments with each critique or revision.",
 
     total_drafts: "Estimated total number of drafts needed to reach a complete solution (must be >= draft_number). Can be adjusted as the solution evolves.",
 
@@ -18,7 +18,7 @@ export const TOOL_PARAM_DESCRIPTIONS = {
 
     revision_instructions: "Detailed, actionable guidance for how to revise the reasoning based on the preceding critique. Should directly address issues identified in the critique. Required when is_critique is false.",
 
-    step_to_review: "Zero-based index of the specific reasoning step being targeted for critique or revision. When omitted, the critique or revision applies to the entire reasoning chain.",
+    step_to_review: "Zero-based index of the specific reasoning step being targeted for critique or revision. When omitted, the critique or revision applies to the entire chain.",
 
     is_final_draft: "Boolean flag indicating whether this is the final draft in the reasoning process. Helps signal the completion of the iterative refinement.",
 };
@@ -139,6 +139,76 @@ export const TOOL_DESCRIPTION = `
     
     - **is_final_draft:** (Optional) Boolean indicating whether this is the final iteration of reasoning.
 
+    ## Error Handling and Recovery:
+    1. **Common Error Scenarios:**
+       - **Stalled Progress:** When multiple iterations show no improvement
+         * Solution: Change critique_focus or reduce scope
+         * Prevention: Use specific, actionable revision_instructions
+       
+       - **Circular Reasoning:** Same points repeated in different words
+         * Solution: Use step_to_review to focus on problematic steps
+         * Prevention: Track key points across iterations
+       
+       - **Scope Creep:** Reasoning chain grows but loses focus
+         * Solution: Refocus using relevance critique
+         * Prevention: Regular relevance checks
+       
+       - **Parameter Validation Failures:**
+         * Solution: Check parameter requirements and dependencies
+         * Prevention: Follow parameter guidelines strictly
+
+    ## Performance Optimization:
+    1. **Token Usage Guidelines:**
+       - Keep reasoning steps concise but complete
+       - Focus critiques on specific aspects
+       - Use step_to_review to limit scope
+       - Typical effective range: 3-5 total_drafts
+       - Consider diminishing returns after 5-7 iterations
+
+    2. **Success Criteria:**
+       - Clear improvement in reasoning quality
+       - Direct addressing of the problem
+       - Logical consistency throughout
+       - Appropriate level of detail
+       - No remaining contradictions
+
+    ## Integration Examples:
+    1. **Problem Analysis:**
+    \`\`\`json
+    {
+        "reasoning_chain": ["Initial analysis of the problem..."],
+        "draft_number": 1,
+        "total_drafts": 3,
+        "next_step_needed": true,
+        "is_critique": false
+    }
+    \`\`\`
+
+    2. **Logical Evaluation:**
+    \`\`\`json
+    {
+        "reasoning_chain": ["Previous reasoning..."],
+        "draft_number": 2,
+        "total_drafts": 3,
+        "next_step_needed": true,
+        "is_critique": true,
+        "critique_focus": "logical_consistency"
+    }
+    \`\`\`
+
+    3. **Final Refinement:**
+    \`\`\`json
+    {
+        "reasoning_chain": ["Refined reasoning..."],
+        "draft_number": 3,
+        "total_drafts": 3,
+        "next_step_needed": false,
+        "is_critique": false,
+        "is_final_draft": true,
+        "revision_instructions": "Polish and finalize"
+    }
+    \`\`\`
+
     ## Best Practice Workflow:
     1. **Start with Initial Draft:** Begin with your first-pass reasoning and set a reasonable total_drafts (typically 3-5).
     
@@ -155,15 +225,6 @@ export const TOOL_DESCRIPTION = `
     7. **Mark Completion Appropriately:** Set next_step_needed=false only when the reasoning chain is complete and satisfactory.
     
     8. **Aim for Progressive Improvement:** Each iteration should measurably improve the reasoning quality.
-
-    ## Example Application:
-    - **Initial Draft:** First-pass reasoning about a complex problem
-    - **Critique #1:** Focus on logical consistency and identify contradictions
-    - **Revision #1:** Address logical flaws found in the critique
-    - **Critique #2:** Focus on completeness and identify missing considerations
-    - **Revision #2:** Incorporate overlooked aspects and strengthen reasoning
-    - **Final Critique:** Holistic review of clarity and relevance
-    - **Final Revision:** Refine presentation and ensure direct addressing of the problem
 
     Chain of Draft is particularly effective when complex reasoning must be broken down into clear steps, analyzed from multiple perspectives, and refined through systematic critique. By mimicking the human drafting process, it produces more robust and accurate reasoning than single-pass approaches.
 `;

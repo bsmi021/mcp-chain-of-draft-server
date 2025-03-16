@@ -1,6 +1,6 @@
 {
   "name": "mcp-chain-of-draft-server",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Model Context Protocol server which provides Chain of Draft style thinking",
   "main": "build/index.js",
   "type": "module",
