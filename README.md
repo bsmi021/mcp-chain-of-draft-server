@@ -2,6 +2,10 @@
 
 Chain of Draft Server is a powerful AI-driven tool that helps developers make better decisions through systematic, iterative refinement of thoughts and designs. It integrates seamlessly with popular AI agents and provides a structured approach to reasoning, API design, architecture decisions, code reviews, and implementation planning.
 
+<a href="https://glama.ai/mcp/servers/exar7zd4f0">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/exar7zd4f0/badge" alt="Chain of Draft Thinking MCP server" />
+</a>
+
 ## 🌟 Features
 
 ### Core Capabilities
