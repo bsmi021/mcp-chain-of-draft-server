@@ -118,6 +118,7 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 * Special thanks to the MCP community
 * Inspired by systematic reasoning methodologies
 
+
 ---
 
 Made with 🧠 by @bsmi021
