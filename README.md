@@ -1,5 +1,7 @@
 # MCP Chain of Draft Server 🧠
 
+[![smithery badge](https://smithery.ai/badge/@bsmi021/mcp-chain-of-draft-server)](https://smithery.ai/server/@bsmi021/mcp-chain-of-draft-server)
+
 Chain of Draft Server is a powerful AI-driven tool that helps developers make better decisions through systematic, iterative refinement of thoughts and designs. It integrates seamlessly with popular AI agents and provides a structured approach to reasoning, API design, architecture decisions, code reviews, and implementation planning.
 
 ## 🌟 Features
@@ -19,6 +21,14 @@ Chain of Draft Server is a powerful AI-driven tool that helps developers make be
 
 * Node.js >= 16.0.0
 * npm >= 8.0.0
+
+### Installing via Smithery
+
+To install Chain of Draft Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@bsmi021/mcp-chain-of-draft-server):
+
+```bash
+npx -y @smithery/cli install @bsmi021/mcp-chain-of-draft-server --client claude
+```
 
 ### Installation
 
