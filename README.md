@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/bsmi021-mcp-chain-of-draft-server-badge.png)](https://mseep.ai/app/bsmi021-mcp-chain-of-draft-server)
+
 # MCP Chain of Draft Server 🧠
 
 Chain of Draft Server is a powerful AI-driven tool that helps developers make better decisions through systematic, iterative refinement of thoughts and designs. It integrates seamlessly with popular AI agents and provides a structured approach to reasoning, API design, architecture decisions, code reviews, and implementation planning.
